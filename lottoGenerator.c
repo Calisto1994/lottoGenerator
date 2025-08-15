@@ -135,7 +135,7 @@ int main (int argc, char* argv[]) {
             continue; // und nochmal auf Dubletten prüfen, bis der Counter auf 0 steht.
         }
 
-        if (lottoTries <= 100) Sleep(100); // Nur, wenn 100 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
+        if (lottoTries <= 10) Sleep(100); // Nur, wenn 10 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
         for (int i=0;i<countNum;i++) printf(" %02d", doubleNums[i]);
         for (int i=0;i<countSupNum;i++) printf(" (%02d)", doubleSupNums[i]);
         printf("\n");

@@ -16,7 +16,6 @@
 
 int main(int argc, char* argv[]);
 int zufallsZahl(int min, int max);
-int exit_handler();
 
 int main (int argc, char* argv[]) {
     #ifdef WIN32
@@ -25,7 +24,7 @@ int main (int argc, char* argv[]) {
         if (!setlocale(LC_ALL, "de_DE.UTF-8")) fprintf(stderr, ERROR_LOCALE);
     #endif
 
-    int lottoType, lottoTries, countNum, lottoMin, lottoMax, countSupNum, lottoSupMin, lottoSupMax;
+    int lottoType, anzahlZahlenreihen, countNum, lottoMin, lottoMax, countSupNum, lottoSupMin, lottoSupMax;
     if (argc > 1) { // Kommandozeilenargument abfragen. Auch hier kann dann direkt 1 (6aus49) oder 2 (EuroJackpot) gewählt werden.
         if (strcmp(argv[1], "--help") < 1) {
             char* outputString =    "--- Hilfe zum Lotto-Generator ---\n"
@@ -74,8 +73,8 @@ int main (int argc, char* argv[]) {
     }
 
     if (argc > 2) { // Kommandozeilenargument 2, falls gegeben. Ansonsten 10 Reihen.
-        lottoTries = (int)strtol(argv[2], NULL, 10);
-    } else lottoTries = 10;
+        anzahlZahlenreihen = (int)strtol(argv[2], NULL, 10);
+    } else anzahlZahlenreihen = 10;
 
     srand((unsigned int)time(NULL)); // Zahlengenerator wird nur einmalig initialisiert vor der Schleife
     rand(); // Erste Zufallszahl verwerfen
@@ -86,7 +85,7 @@ int main (int argc, char* argv[]) {
     int doubleCounter = 0, intDoubleCounter = 0, countGenNums = 0; // externer Dublettenzähler und interner Dublettenzähler
     // countGenNums zählt JEDE Zufallsgenerierte Zahl, um festzustellen, wie viele Zahlen insgesamt generiert wurden.
 
-    for (int x=0;x<lottoTries;x++) { // Generiere 10 Zahlenreihen
+    for (int x=0;x<anzahlZahlenreihen;x++) { // Generiere 10 Zahlenreihen
         for (int i=0;i < countNum; i++) { // Hauptzahlen
             doubleNums[i] = zufallsZahl(lottoMin, lottoMax);
             countGenNums++;
@@ -135,7 +134,7 @@ int main (int argc, char* argv[]) {
             continue; // und nochmal auf Dubletten prüfen, bis der Counter auf 0 steht.
         }
 
-        if (lottoTries <= 10) Sleep(100); // Nur, wenn 10 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
+        if (anzahlZahlenreihen <= 10) Sleep(100); // Nur, wenn 10 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
         for (int i=0;i<countNum;i++) printf(" %02d", doubleNums[i]);
         for (int i=0;i<countSupNum;i++) printf(" (%02d)", doubleSupNums[i]);
         printf("\n");

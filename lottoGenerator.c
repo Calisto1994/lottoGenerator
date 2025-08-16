@@ -92,7 +92,7 @@ int main (int argc, char* argv[]) {
     // countGenNums zählt JEDE Zufallsgenerierte Zahl, um festzustellen, wie viele Zahlen insgesamt generiert wurden.
 
     for (int x=1;x<=anzahlZahlenreihen;x++) { // Generiere 10 Zahlenreihen
-        printf("%d: ", x); // Zeige, wie vielte Zahlenreihe
+        printf("% 5d: ", x); // Zeige, wie vielte Zahlenreihe (bis 5 Stellen mit Leerzeichen aufgefüllt)
         for (int i=0;i < countNum; i++) { // Hauptzahlen
             doubleNums[i] = zufallsZahl(lottoMin, lottoMax);
             countGenNums++;

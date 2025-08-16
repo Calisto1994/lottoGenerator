@@ -143,9 +143,9 @@ int main (int argc, char* argv[]) {
 
         if (anzahlZahlenreihen <= 10) Sleep(100); // Nur, wenn 10 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
         qsort(doubleNums, countNum, sizeof(int), compare); // Sortiere die Zahlen aufsteigend.
-        for (int i=0;i<countNum;i++) i==0?printf("%02d",doubleNums[i]):printf(" %02d", doubleNums[i]);
+        for (int i=0;i<countNum;i++) i==0?printf("%02d",doubleNums[i]):printf(" %02d", doubleNums[i]); // Ausgabe
         qsort(doubleSupNums, countSupNum, sizeof(int), compare); // Sortiere die Superzahlen aufsteigend.
-        for (int i=0;i<countSupNum;i++) printf(" (%02d)", doubleSupNums[i]);
+        for (int i=0;i<countSupNum;i++) printf(" (%02d)", doubleSupNums[i]); // Ausgabe
         printf("\n");
     }
         printf("\n---------------"
@@ -158,5 +158,6 @@ int main (int argc, char* argv[]) {
 }
 
 int zufallsZahl (int min, int max) {    // Generiere Zufallszahl in einem bestimmten Bereich (von min bis max)
+    if (max<min) return -1; // max darf nicht kleiner als min sein (riskiert undefiniertes Verhalten)
     return (rand() % (max - min + 1) + min);
 }

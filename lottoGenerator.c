@@ -91,7 +91,7 @@ int main (int argc, char* argv[]) {
     int doubleCounter = 0, intDoubleCounter = 0, countGenNums = 0; // externer Dublettenzähler und interner Dublettenzähler
     // countGenNums zählt JEDE Zufallsgenerierte Zahl, um festzustellen, wie viele Zahlen insgesamt generiert wurden.
 
-    for (int x=0;x<anzahlZahlenreihen;x++) { // Generiere 10 Zahlenreihen
+    for (int x=1;x<=anzahlZahlenreihen;x++) { // Generiere 10 Zahlenreihen
         printf("%d: ", x); // Zeige, wie vielte Zahlenreihe
         for (int i=0;i < countNum; i++) { // Hauptzahlen
             doubleNums[i] = zufallsZahl(lottoMin, lottoMax);

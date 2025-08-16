@@ -77,7 +77,8 @@ int main (int argc, char* argv[]) {
     } else anzahlZahlenreihen = 10;
 
     srand((unsigned int)time(NULL)); // Zahlengenerator wird nur einmalig initialisiert vor der Schleife
-    rand(); // Erste Zufallszahl verwerfen
+    rand(); // Erste Zufallszahl verwerfen; Ermöglicht Portabilität des Codes auf ältere Systeme/Compiler, bei welchen der Zahlengenerator in den ersten zwei Durchläufen
+    // gleiche oder zumindest sehr ähnliche/nahe Zahlen lieferte.
 
     // Zwei Arrays zur Prüfung nach Dubletten (unabhängige Prüfung für Hauptzahlen sowie Euro-/Superzahlen)
     int *doubleNums = calloc(countNum,sizeof(int)); if (doubleNums == NULL) fprintf(stderr, "Fehler bei Speicherzuordnung\n"), exit(EXIT_FAILURE);

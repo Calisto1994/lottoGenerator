@@ -86,6 +86,7 @@ int main (int argc, char* argv[]) {
     // countGenNums zählt JEDE Zufallsgenerierte Zahl, um festzustellen, wie viele Zahlen insgesamt generiert wurden.
 
     for (int x=0;x<anzahlZahlenreihen;x++) { // Generiere 10 Zahlenreihen
+        printf("%d: ", x); // Zeige, wie vielte Zahlenreihe
         for (int i=0;i < countNum; i++) { // Hauptzahlen
             doubleNums[i] = zufallsZahl(lottoMin, lottoMax);
             countGenNums++;
@@ -95,7 +96,7 @@ int main (int argc, char* argv[]) {
             countGenNums++;
         }
 
-        for (;;) {
+        for (;;) { // Endlosschleife. Ermöglicht wiederholte Prüfung, so lange notwendig
             for (int index=0;index<countNum;index++) { // Dublettenprüfung Hauptzahlen
                 for (int inIndex=0;inIndex<countNum;inIndex++) { // innere Schleife. Prüfe innere gegen äußere Schleife.
                     if (index != inIndex && doubleNums[index] == doubleNums[inIndex]) { // Ausschließen, dass eine Zahl sich selbst (gleicher Index) als Dublette erkennt
@@ -114,7 +115,7 @@ int main (int argc, char* argv[]) {
             intDoubleCounter=0; // zurücksetzen
             continue; // und nochmal auf Dubletten prüfen, bis der Counter auf 0 steht.
         }
-        for (;;) {
+        for (;;) { // Endlosschleife. Ermöglicht wiederholte Prüfung, so lange notwendig
             for (int index=0;index<countSupNum && countSupNum>1;index++) { // Dublettenprüfung Super- bzw. Eurozahlen (nur bei >1)
                 for (int inIndex=0;inIndex<countSupNum;inIndex++) { // innere Schleife. Prüfe innere gegen äußere Schleife.
                     if (index != inIndex && doubleSupNums[index] == doubleSupNums[inIndex]) { // Ausschließen, dass eine Zahl sich selbst (gleicher Index) als Dublette erkennt
@@ -135,7 +136,7 @@ int main (int argc, char* argv[]) {
         }
 
         if (anzahlZahlenreihen <= 10) Sleep(100); // Nur, wenn 10 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
-        for (int i=0;i<countNum;i++) printf(" %02d", doubleNums[i]);
+        for (int i=0;i<countNum;i++) i==0?printf("%02d",doubleNums[i]):printf(" %02d", doubleNums[i]);
         for (int i=0;i<countSupNum;i++) printf(" (%02d)", doubleSupNums[i]);
         printf("\n");
     }

@@ -16,6 +16,11 @@
 
 int main(int argc, char* argv[]);
 int zufallsZahl(int min, int max);
+int compare (const void *a, const void *b);
+
+int compare (const void *a, const void *b) { // Vergleichsfunktion für qsort-Algorithmus zur Sortierung der Zahlen
+    return (*(int*)a - *(int*)b);
+}
 
 int main (int argc, char* argv[]) {
     #ifdef WIN32
@@ -137,7 +142,9 @@ int main (int argc, char* argv[]) {
         }
 
         if (anzahlZahlenreihen <= 10) Sleep(100); // Nur, wenn 10 oder weniger Zahlenreihen generiert werden, 100ms pro Zeile "schlafen".
+        qsort(doubleNums, countNum, sizeof(int), compare); // Sortiere die Zahlen aufsteigend.
         for (int i=0;i<countNum;i++) i==0?printf("%02d",doubleNums[i]):printf(" %02d", doubleNums[i]);
+        qsort(doubleSupNums, countSupNum, sizeof(int), compare); // Sortiere die Superzahlen aufsteigend.
         for (int i=0;i<countSupNum;i++) printf(" (%02d)", doubleSupNums[i]);
         printf("\n");
     }
